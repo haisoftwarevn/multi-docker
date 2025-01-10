@@ -1,0 +1,14 @@
+sudo: required
+language: generic 
+services:
+  - docker
+before_install:
+  - docker build -t dangnamhai/react-test -f ./client/Dockerfile.dev . 
+
+script:
+  - docker run -e CI=true dangnamhai/react-test npm test 
+after_success:
+  - docker build -t dangnamhai/multi-client ./client
+  - docker build -t dangnamhai/multi-nginx ./nginx
+  - docker build -t dangnamhai/multi-server ./server
+  - docker build -t dangnamhai/multi-worker ./worker
