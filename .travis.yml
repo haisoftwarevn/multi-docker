@@ -3,7 +3,7 @@ language: generic
 services:
   - docker
 before_install:
-  - docker build -t dangnamhai/react-test -f ./client/Dockerfile.dev . 
+  - docker build -t dangnamhai/react-test -f ./client/Dockerfile.dev
 
 script:
   - docker run -e CI=true dangnamhai/react-test npm test 
