@@ -3,19 +3,19 @@ language: generic
 services:
   - docker
 before_install:
-  - docker build -t dangnamhai/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t haisoftwarevn/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true dangnamhai/react-test npm test 
+  - docker run -e CI=true haisoftwarevn/react-test npm test 
 after_success:
-  - docker build -t dangnamhai/multi-client ./client
-  - docker build -t dangnamhai/multi-nginx ./nginx
-  - docker build -t dangnamhai/multi-server ./server
-  - docker build -t dangnamhai/multi-worker ./worker
+  - docker build -t haisoftwarevn/multi-client ./client
+  - docker build -t haisoftwarevn/multi-nginx ./nginx
+  - docker build -t haisoftwarevn/multi-server ./server
+  - docker build -t haisoftwarevn/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push dangnamhai/multi-client 
-  - docker push dangnamhai/multi-nginx 
-  - docker push dangnamhai/multi-server
-  - docker push dangnamhai/multi-worker
+  - docker push haisoftwarevn/multi-client 
+  - docker push haisoftwarevn/multi-nginx 
+  - docker push haisoftwarevn/multi-server
+  - docker push haisoftwarevn/multi-worker
