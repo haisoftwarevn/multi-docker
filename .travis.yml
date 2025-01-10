@@ -12,3 +12,10 @@ after_success:
   - docker build -t dangnamhai/multi-nginx ./nginx
   - docker build -t dangnamhai/multi-server ./server
   - docker build -t dangnamhai/multi-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push dangnamhai/multi-client 
+  - docker push dangnamhai/multi-nginx 
+  - docker push dangnamhai/multi-server
+  - docker push dangnamhai/multi-worker
